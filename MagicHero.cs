@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameByCash
 {
-    class MagicHero:Hero
+    class MagicHero //: Hero
     {
     }
 }
