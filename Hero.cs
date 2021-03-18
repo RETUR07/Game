@@ -23,30 +23,33 @@ namespace GameByCash
         public uint Age { get; }
 
         //здоровье
-        public uint MaxHealth { get; } = 100;
-        public uint CurrentHealth
+        public uint MaxHealth { get; set; } = 100;
+        private uint CurrentHealth;
+        public uint CurHlth
         {
-            get { return CurrentHealth; }
+            get 
+            { 
+                return CurrentHealth; 
+            }
             set 
             {
+                double nexthlth = Convert.ToDouble(value) / MaxHealth;
+                double curhlth = Convert.ToDouble(CurrentHealth) / MaxHealth;
                 if (value == 0)
                 {
-                    CurrentHealth = value;
                     statmnt = Statements.died;
                 }
                 else
-                if ((Convert.ToDouble(value) / MaxHealth) < 0.1 && (Convert.ToDouble(CurrentHealth) / MaxHealth) >= 0.1)
+                if (nexthlth < 0.1 && curhlth >= 0.1 && statmnt == Statements.normal)
                 {
-                    CurrentHealth = value;
                     statmnt = Statements.weak;
                 }
                 else
-                if ((Convert.ToDouble(value) / MaxHealth) >= 0.1 && (Convert.ToDouble(CurrentHealth) / MaxHealth) < 0.1)
+                if ( nexthlth >= 0.1 && curhlth < 0.1 && statmnt == Statements.weak)
                 {
-                    CurrentHealth = value;
                     statmnt = Statements.normal;
                 }
-                else CurrentHealth = value;
+                CurrentHealth = value;
 
 
             }
@@ -66,6 +69,7 @@ namespace GameByCash
         //конструкторы
         public Hero(string n, Races r, Gender g, int age)
         {
+            CurrentHealth = 100;
             Id = ++_ID_;
             Name = n;
             Race = r;
@@ -93,7 +97,7 @@ namespace GameByCash
 
         public override string ToString()
         {
-            return $"РАСА: {Race}  ПОЛ: {Gnd}  ВОЗРАСТ:{Age}  ИМЯ:{Name}\nСОСТОЯНИЕ:{st[Convert.ToInt32(statmnt)]}  ЗДОРОВЬЕ:{CurrentHealth}/{MaxHealth}  ОПЫТ{Exp}";
+            return $"РАСА: {Race}  ПОЛ: {Gnd}  ВОЗРАСТ:{Age}  ИМЯ:{Name}\nСОСТОЯНИЕ:{st[Convert.ToInt32(statmnt)]}  ЗДОРОВЬЕ:{CurrentHealth}/{MaxHealth}  ОПЫТ:{Exp}";
         }
     }
 }
