@@ -39,7 +39,7 @@ namespace GameByCash
         //каст заклинания
         public void MagicCast(int ManaNeed, int StrenthK)
         {
-            CurrentMana = CurrentMana - Convert.ToUInt16(ManaNeed * StrenthK);
+            if (CastCheck(ManaNeed, StrenthK)) CurrentMana = CurrentMana - Convert.ToUInt16(ManaNeed * StrenthK);
         }
     }
 }
