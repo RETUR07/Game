@@ -6,6 +6,9 @@ namespace GameByCash
 {
     class Hero:IComparable
     {
+        //возможность говорить возможность двигаться
+        public bool SpeakCheck { get; set; } = true;
+        public bool MoveCheck { get; set; } = true;
         //возможные состояния персонажа
         public enum Statements { normal, weak, ill, poisoned, paralized, died };
         string[] st = { "normal", "weak", "ill", "poisoned", "paralized", "died" };
@@ -78,17 +81,17 @@ namespace GameByCash
             else { Age = Convert.ToUInt32(age); }
         }
 
-        //возможность говорить
-        public void Talk(string msg)
-        {
-            Console.WriteLine(msg);
-        }
+        ////возможность говорить
+        //public void Talk(string msg)
+        //{
+        //    Console.WriteLine(msg);
+        //}
 
-        //возможность двигаться
-        public void Move (int speed, int direction)
-        {
-            //пока пусто без графики
-        }
+        ////возможность двигаться
+        //public void Move (int speed, int direction)
+        //{
+        //    //пока пусто без графики
+        //}
 
         public int CompareTo(object obj)
         {
