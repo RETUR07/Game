@@ -22,7 +22,7 @@ namespace GameByCash
         }
 
         //конструкторы
-        MagicHero(string n, Races r, Gender g, int age) : base(n, r, g, age)
+        public MagicHero(string n, Races r, Gender g, int age) : base(n, r, g, age)
         {
             CurrentMana = 100;
         }
