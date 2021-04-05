@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameByCash
 {
-    class AddHealth : MagicCast
+    class Revive : MagicCast
     {
     }
 }
