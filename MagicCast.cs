@@ -4,31 +4,40 @@ using System.Text;
 
 namespace GameByCash
 {
-    abstract class MagicCast:IMagic
+    abstract class MagicCast: IMagic
     {
-        public uint MinMana;
-        public bool MoveAbility;
-        public bool TalkAbility;
+        public uint MinMana;// лучше private мы же его нигде не меняем + только задаем в дочернем
+        public bool MoveAbility;// 
+        public bool SpeakAbility;//
 
-        public MagicCast(){
+        public MagicHero SpellCastingHero;// лучше private мы же его нигде не меняем
+        //public Hero TargetHero; а зачем вообще нужны?
+        //public int Strength;
 
+        public MagicCast(MagicHero spellCastingHero, uint minMana, bool moveAbility, bool speakAbility)
+        {
+            SpellCastingHero = spellCastingHero;
+            MinMana = minMana;
+            MoveAbility = moveAbility;
+            SpeakAbility = speakAbility;
         }
 
-        public bool MainCast(Hero TargetHero, int Strength)
+        public virtual bool MainCast(Hero targetHero,uint strength)
         {
-            return true;
+            return false;//Если метод не переопределён в дочернем классе
+                         //то данную перегрузку нельзя кастануть поэтому false
         }
-        public bool MainCast(Hero TargetHero)
+        public virtual bool MainCast(Hero targetHero)
         {
-            return true;
+            return false;
         }
-        public bool MainCast(int Strength)
+        public virtual bool MainCast(uint strength)
         {
-            return true;
+            return false;
         }
-        public bool MainCast()
+        public virtual bool MainCast()
         {
-            return true;
+            return false;
         }
     }
 }

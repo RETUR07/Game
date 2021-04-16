@@ -6,9 +6,9 @@ namespace GameByCash
 {
     interface IMagic
     {
-        public bool MainCast(Hero TargetHero, int Strength);
+        public bool MainCast(Hero TargetHero, uint Strength);
         public bool MainCast(Hero TargetHero);
-        public bool MainCast(int Strength);
+        public bool MainCast(uint Strength);
         public bool MainCast();
     }
 }
