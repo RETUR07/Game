@@ -21,13 +21,31 @@ namespace GameByCash
             MoveAbility = moveAbility;
             SpeakAbility = speakAbility;
         }
+        public bool CastCheck()
+        {
+            if (SpellCastingHero.CurMn >= MinMana
+            && (SpellCastingHero.SpeakCheck == SpeakAbility || !SpeakAbility)
+            && (SpellCastingHero.MoveCheck == MoveAbility || !MoveAbility))
+            {
+                return true;
+            }
+            return false;
+        }
 
-        public virtual bool MainCast(Hero targetHero,uint strength)
+        public virtual bool MainCast(Hero targetHero, uint strength)
         {
             return false;//Если метод не переопределён в дочернем классе
                          //то данную перегрузку нельзя кастануть поэтому false
         }
         public virtual bool MainCast(Hero targetHero)
+        {
+            return false;
+        }
+        public virtual bool MainCast(MagicHero targetHero, uint strength)
+        {
+            return false;
+        }
+        public virtual bool MainCast(MagicHero targetHero)
         {
             return false;
         }

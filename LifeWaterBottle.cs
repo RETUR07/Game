@@ -7,15 +7,14 @@ namespace GameByCash
     class LifeWaterBottle : Artifact
     {
         public enum VolumeTypes { small = 10, medium = 25, big = 50 };
-        public  VolumeTypes Volume { get; set; } 
-        public bool IsUsed = false;//вынести поле в "артифакт" мб, прост зачем тогда возобновляемость
-        public LifeWaterBottle(VolumeTypes volume): base(0, false)
+        public VolumeTypes Volume; //{ get; set; } Своство не нужно вроде?
+        public LifeWaterBottle(VolumeTypes volume): base(0, true)
         {
             Volume = volume;
         }
         public override bool MainCast(Hero targetHero)
         {
-            if(!this.IsUsed)//Если ещё не использовали артефакт
+            if(this.Renewable)//Если ещё не использовали артефакт
             {
                 if (targetHero.CurHlth + (uint)Volume > targetHero.MaxHealth)
                 {
@@ -25,13 +24,13 @@ namespace GameByCash
                 {
                     targetHero.CurHlth = targetHero.CurHlth + (uint)Volume;
                 }
-                this.IsUsed = true;
+                this.Renewable = false;
                 return true;
             }
-            else{
-                //мб как-то уничтожить объект????
-                return false;
-            }           
+            return false;//мб как-то уничтожить объект                   
         }
+        //нужна ли тут эта перегрузка ведь тут нет взаимодействия с полями Маг-героя,
+        //в отличие от мертвой воды
+        //можем ли мы в Hero передать MagicHero??? Можем я прочитал
     }
 }
