@@ -7,7 +7,11 @@ namespace GameByCash
     abstract class Artifact: IMagic
     {
         public bool Renewable;
-        public int ArtifactPower;
+        public uint ArtifactPower;
+        public Artifact(uint artifactPower, bool renewable){
+            ArtifactPower = artifactPower;
+            Renewable = renewable;
+        }
 
         public virtual bool MainCast(Hero targetHero, uint strength)
         {
