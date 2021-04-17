@@ -11,11 +11,9 @@ namespace GameByCash
         {
             
         }
-        public override bool MainCast(Hero targetHero, uint strength)//Проблемма оступа к полям (проверить) 
+        public override bool MainCast(Hero targetHero, uint strength)
         {
-            if(SpellCastingHero.CurMn >= MinMana 
-             && (SpellCastingHero.MoveCheck == MoveAbility || !MoveAbility)//Проверять ли? Выносить в класс Magic cast ли?
-             && (SpellCastingHero.SpeakCheck == SpeakAbility || !SpeakAbility))
+            if(this.CastCheck())//Имя может быть упрощено
             {
                 if(targetHero.CurHlth + strength > targetHero.MaxHealth)
                 {
@@ -26,17 +24,12 @@ namespace GameByCash
                 }
                 SpellCastingHero.CurMn -= MinMana;//Как менять ману хз 
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            }            
+            return false;            
         }
         public override bool MainCast(Hero targetHero)
         {
-            if(SpellCastingHero.CurMn >= MinMana 
-             && (SpellCastingHero.MoveCheck == MoveAbility || !MoveAbility)
-             && (SpellCastingHero.SpeakCheck == SpeakAbility || !SpeakAbility))
+            if (this.CastCheck())
             {
                 if (targetHero.CurHlth + SpellCastingHero.CurMn / 2 > targetHero.MaxHealth)
                 {
@@ -49,10 +42,7 @@ namespace GameByCash
                 SpellCastingHero.CurMn -= SpellCastingHero.CurMn / 2 * 2;//Может одна мана остаться
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace GameByCash
     {
         public bool Renewable;
         public uint ArtifactPower;
+
         public Artifact(uint artifactPower, bool renewable){
             ArtifactPower = artifactPower;
             Renewable = renewable;
@@ -19,6 +20,14 @@ namespace GameByCash
                          //то данную перегрузку нельзя кастануть поэтому false
         }
         public virtual bool MainCast(Hero targetHero)
+        {
+            return false;
+        }
+        public virtual bool MainCast(MagicHero targetHero, uint strength)
+        {
+            return false;
+        }
+        public virtual bool MainCast(MagicHero targetHero)
         {
             return false;
         }
