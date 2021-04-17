@@ -7,7 +7,7 @@ namespace GameByCash
     class Revive : MagicCast
     {
         public Revive(MagicHero spellCastingHero)
-                      : base(spellCastingHero, 150, true, true)//MaxMana 150 а у нас 100 + она может меняться, задаётся в конструкторе
+                      : base(spellCastingHero, 150, true, true)//MaxMana 150 а у нас 100 + она может меняться
         {
 
         }
