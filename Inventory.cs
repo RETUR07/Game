@@ -12,9 +12,13 @@ namespace GameByCash
             inventory = new List<Artifact>();
         }
 
-        void AddArtifact(Artifact item)
+        public void AddArtifact(Artifact item)
         {
-            inventory.Add(item);
+            if (!item.IsInInventory)
+            {
+                item.IsInInventory = true;
+                inventory.Add(item);
+            }
         }
         //void RemoveArtifact(Artifact item)
         //{         
@@ -24,9 +28,13 @@ namespace GameByCash
         //    }
             
         //}
-        void DropArtifact(Artifact item)
+        public void DropArtifact(Artifact item)
         {
-            inventory.Remove(item);
+            if (item.IsInInventory)
+            {
+                item.IsInInventory = false;
+                inventory.Remove(item);
+            }
         }
 
     }

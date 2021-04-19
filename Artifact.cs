@@ -6,6 +6,7 @@ namespace GameByCash
 {
     abstract class Artifact: IMagic
     {
+        public bool IsInInventory = false;
         public bool Renewable;
         public uint ArtifactPower;
 
@@ -13,7 +14,7 @@ namespace GameByCash
             ArtifactPower = artifactPower;
             Renewable = renewable;
         }
-
+        
         public virtual bool MainCast(Hero targetHero, uint strength)
         {
             return false;//Если метод не переопределён в дочернем классе

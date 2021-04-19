@@ -19,7 +19,7 @@ namespace GameByCash
             while (true)
             {
                 Console.WriteLine(h.ToString());
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(5000);
             }
         }
         
