@@ -13,7 +13,7 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero, uint strength)
         {
-            if(this.CastCheck())//Имя может быть упрощено
+            if(this.CastCheck() && targetHero.statmnt != Hero.Statements.died)//Имя может быть упрощено
             {
                 if(targetHero.CurHlth + strength > targetHero.MaxHealth)
                 {

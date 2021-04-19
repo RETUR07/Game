@@ -6,25 +6,25 @@ namespace GameByCash
 {
    class Inventory
    {   
-       List<Artefact> inventory;
+       List<Artifact> inventory;
        public Inventory() 
         {
-            inventory = new List<Artefact>();
+            inventory = new List<Artifact>();
         }
 
-        void AddArtefact(Artefact item)
+        void AddArtifact(Artifact item)
         {
             inventory.Add(item);
         }
-        void RemoveArtefact(Artefact item)
-        {         
-            if (!item.Reusable())
-            {
-                inventory.Remove(item);
-            }
+        //void RemoveArtifact(Artifact item)
+        //{         
+        //    if (!item.Reusable())
+        //    {
+        //        inventory.Remove(item);
+        //    }
             
-        }
-        void DropArtefact(Artefact item)
+        //}
+        void DropArtifact(Artifact item)
         {
             inventory.Remove(item);
         }

@@ -7,7 +7,7 @@ namespace GameByCash
     class MagicHero : Hero
     {
         //мана
-        public uint MaxMana { get; set; } = 100;
+        public uint MaxMana { get; set; } = 150;
         private uint CurrentMana;
         public uint CurMn
         {

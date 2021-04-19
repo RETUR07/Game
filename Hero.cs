@@ -10,8 +10,8 @@ namespace GameByCash
         public bool SpeakCheck { get; set; } = true;
         public bool MoveCheck { get; set; } = true;
         //возможные состояния персонажа
-        public enum Statements { normal, weak, ill, poisoned, paralized, died };
-        string[] st = { "normal", "weak", "ill", "poisoned", "paralized", "died" };
+        public enum Statements { normal, weak, ill, poisoned, paralized, died, invulnerability };
+        string[] st = { "normal", "weak", "ill", "poisoned", "paralized", "died", "invulnerability" };
         public Statements statmnt { get; set; } = Statements.normal;
 
         //гендер
