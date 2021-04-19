@@ -4,19 +4,18 @@ using System.Text;
 
 namespace GameByCash
 {
-    class Antidote : MagicCast
+    class FrogDecoction: Artifact
     {
-        public Antidote(MagicHero spellCastingHero)
-                  : base(spellCastingHero, 30, false, false)
+        public FrogDecoction() : base(0, true)
         {
 
         }
         public override bool MainCast(Hero targetHero)
         {
-            if (this.CastCheck() && (targetHero.statmnt == Hero.Statements.poisoned))
+            if (this.Renewable && targetHero.statmnt == Hero.Statements.poisoned)
             {
                 targetHero.statmnt = Hero.Statements.normal;
-                SpellCastingHero.CurMn -= MinMana;
+                this.Renewable = false;
                 return true;
             }
             return false;
