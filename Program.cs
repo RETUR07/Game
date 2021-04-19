@@ -16,12 +16,13 @@ namespace GameByCash
             h.CurMn = 100;
             Armor armor = new Armor(h);
             armor.MainCast(h, 1);
-            while (true)
-            {
-                Console.WriteLine(h.ToString());
-                System.Threading.Thread.Sleep(5000);
-            }
+            LifeWaterBottle lb = new LifeWaterBottle(LifeWaterBottle.VolumeTypes.medium);
+            h.Inventory.AddArtifact(lb);
+            (h.Inventory.GetArtifact(lb.ToString()) as LifeWaterBottle).
+            //LifeWaterBottle lbmain = (LifeWaterBottle)h.Inventory.GetArtifact(lb.ToString());
+            //Console.WriteLine(lbmain.Volume);
+
         }
-        
+
     }
 }

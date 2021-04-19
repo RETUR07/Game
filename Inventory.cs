@@ -1,40 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 
 namespace GameByCash
 {
    class Inventory
-   {   
-       List<Artifact> inventory;
-       public Inventory() 
+   {
+        Hashtable inventory;
+        public Inventory() 
         {
-            inventory = new List<Artifact>();
+            inventory = new Hashtable();
         }
 
-        public void AddArtifact(Artifact item)
+        public void AddArtifact(object item)
         {
-            if (!item.IsInInventory)
-            {
-                item.IsInInventory = true;
-                inventory.Add(item);
-            }
+            inventory.Add(item.GetType().ToString(), item);
         }
-        //void RemoveArtifact(Artifact item)
-        //{         
-        //    if (!item.Reusable())
-        //    {
-        //        inventory.Remove(item);
-        //    }
-            
-        //}
-        public void DropArtifact(Artifact item)
+        public object GetArtifact(string s)
         {
-            if (item.IsInInventory)
-            {
-                item.IsInInventory = false;
-                inventory.Remove(item);
-            }
+            return inventory[s];
+        }
+        public void RemoveArtifact(object item)
+        {
+
+        }
+        public void DropArtifact(object item)
+        {
+
         }
 
     }

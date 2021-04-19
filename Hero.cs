@@ -6,7 +6,7 @@ namespace GameByCash
 {
     class Hero:IComparable
     {
-        Inventory Inventory;
+        public Inventory Inventory;
         //возможность говорить возможность двигаться
         public bool SpeakCheck { get; set; } = true;
         public bool MoveCheck { get; set; } = true;
@@ -73,6 +73,7 @@ namespace GameByCash
         //конструкторы
         public Hero(string n, Races r, Gender g, int age)
         {
+            Inventory = new Inventory();
             CurrentHealth = 100;
             Id = ++_ID_;
             Name = n;
