@@ -35,7 +35,7 @@ namespace GameByCash
             timerRight.Elapsed += timerRight_Tick;
             timerRight.Interval = 1000d;
 
-            if (CastCheck()) //проверка на силу
+            if (CastCheck() && targetHero.statmnt != Hero.Statements.invulnerability) //проверка на силу
             {
                 targetHero.statmnt = Hero.Statements.invulnerability;
                 

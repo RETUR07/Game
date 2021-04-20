@@ -16,18 +16,22 @@ namespace GameByCash
         {
             inventory.Add(item.ToString(), item);
         }
+
         public object GetArtifact(object item)
         {
             return inventory[item.ToString()];
         }
+
         public void RemoveArtifact(object item)
         {
             inventory.Remove(item.ToString());
         }
+
         public bool FindItem(object item)
         {
             return inventory.ContainsKey(item.ToString());
         }
+
         public override string ToString()
         {
             ICollection keys = inventory.Keys;

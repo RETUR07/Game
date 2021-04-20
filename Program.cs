@@ -28,6 +28,8 @@ namespace GameByCash
             MagicHero enemy = new MagicHero("enemy", Hero.Races.ork, Hero.Gender.male, 500);
 
             hero.Inventory.AddArtifact(new LifeWaterBottle(LifeWaterBottle.VolumeTypes.small));
+            hero.Inventory.AddArtifact(new LifeWaterBottle(LifeWaterBottle.VolumeTypes.small));
+
             Console.Clear();
             Console.WriteLine(hero.ToString());
             Console.WriteLine(hero.Inventory.ToString());
