@@ -27,22 +27,29 @@ namespace GameByCash
             MagicHero hero = new MagicHero(name , race, gender, age);
             MagicHero enemy = new MagicHero("enemy", Hero.Races.ork, Hero.Gender.male, 500);
 
+
+            enemy.Inventory.AddArtifact(new LightningStaff(100));
             hero.Inventory.AddArtifact(new LifeWaterBottle(LifeWaterBottle.VolumeTypes.small));
-            hero.Inventory.AddArtifact(new LifeWaterBottle(LifeWaterBottle.VolumeTypes.small));
+
 
             Console.Clear();
             Console.WriteLine(hero.ToString());
             Console.WriteLine(hero.Inventory.ToString());
+
             bool flag = false;
             while (hero.CurHlth > 0)
             {
+                enemy.Inventory.UseArtifact(enemy.Inventory.GetArtifact(new LightningStaff(100)) as LightningStaff, hero, 10);
+                hero.Inventory.AddArtifact(new LifeWaterBottle(LifeWaterBottle.VolumeTypes.small));
+                flag = true;
                 if (flag)
                 {
                     Console.Clear();
                     Console.WriteLine(hero.ToString());
-                    Console.WriteLine(hero.Inventory.ToString());
+ 
+
                 }
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(2000);
             }
 
         }
