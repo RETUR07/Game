@@ -18,7 +18,8 @@ namespace GameByCash
             if (seconds > 10)//кол-во секунд поменять
             {
                 h.statmnt = st;
-                timerRight.Dispose();
+                timerRight.Stop();
+                timerRight.Close();
             }
         }
         public Armor(MagicHero spellCastingHero)

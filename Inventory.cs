@@ -14,20 +14,34 @@ namespace GameByCash
 
         public void AddArtifact(object item)
         {
-            inventory.Add(item.GetType().ToString(), item);
+            inventory.Add(item.ToString(), item);
         }
-        public object GetArtifact(string s)
+        public object GetArtifact(object item)
         {
-            return inventory[s];
+            return inventory[item.ToString()];
         }
         public void RemoveArtifact(object item)
         {
-
+            inventory.Remove(item.ToString());
         }
-        public void DropArtifact(object item)
+        public bool FindItem(object item)
         {
-
+            return inventory.ContainsKey(item.ToString());
         }
+        public override string ToString()
+        {
+            ICollection keys = inventory.Keys;
+            string s = "";
+            foreach (string key in keys)
+            {
+                s += inventory[key].ToString();
+            }
+            return s;
+        }
+        //public void DropArtifact(object item)
+        //{
+
+        //}
 
     }
 }
