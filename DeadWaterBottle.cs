@@ -29,5 +29,9 @@ namespace GameByCash
             }
             return false;//мб как-то уничтожить объект                   
         }
+        public override string ToString()
+        {
+            return "DeadWaterBottle " + Volume.ToString();
+        }
     }
 }

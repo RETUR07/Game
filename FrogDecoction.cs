@@ -20,5 +20,9 @@ namespace GameByCash
             }
             return false;
         }
+        public override string ToString()
+        {
+            return "FrogDecoction";
+        }
     }
 }

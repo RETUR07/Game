@@ -22,5 +22,9 @@ namespace GameByCash
             }
             return false;           
         }
+        public override string ToString()
+        {
+            return "LightningStaff " + ArtifactPower.ToString();
+        }
     }
 }

@@ -6,11 +6,11 @@ namespace GameByCash
 {
     abstract class Artifact: IMagic
     {
-        public bool IsInInventory = false;
         public bool Renewable;
         public uint ArtifactPower;
 
-        public Artifact(uint artifactPower, bool renewable){
+        public Artifact(uint artifactPower, bool renewable)
+        {
             ArtifactPower = artifactPower;
             Renewable = renewable;
         }

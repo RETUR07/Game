@@ -27,5 +27,9 @@ namespace GameByCash
             }
             return true;
         }
+        public override string ToString()
+        {
+            return "PoisonousSaliva " + ArtifactPower.ToString();
+        }
     }
 }

@@ -29,8 +29,9 @@ namespace GameByCash
             }
             return false;//мб как-то уничтожить объект                   
         }
-        //нужна ли тут эта перегрузка ведь тут нет взаимодействия с полями Маг-героя,
-        //в отличие от мертвой воды
-        //можем ли мы в Hero передать MagicHero??? Можем я прочитал
+        public override string ToString()
+        {
+            return "LifeWaterBottle " + Volume.ToString();
+        }
     }
 }
