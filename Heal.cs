@@ -13,13 +13,17 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero)
         {
-            if (this.CastCheck() && (targetHero.statmnt == Hero.Statements.ill))
+            if (CastCheck() && (targetHero.statmnt == Hero.Statements.ill))
             {
                 targetHero.statmnt = Hero.Statements.normal;
                 SpellCastingHero.CurMn -= MinMana;
                 return true;
             }           
             return false;            
+        }
+        public override string ToString()
+        {
+            return "Heal";
         }
     }
 }

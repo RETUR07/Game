@@ -13,7 +13,7 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero, uint strength)
         {
-            if(this.CastCheck() && targetHero.statmnt != Hero.Statements.died)//Имя может быть упрощено
+            if(CastCheck() && targetHero.statmnt != Hero.Statements.died && targetHero.statmnt != Hero.Statements.invulnerability)//Имя может быть упрощено
             {
                 if(targetHero.CurHlth + strength > targetHero.MaxHealth)
                 {
@@ -29,7 +29,7 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero)
         {
-            if (this.CastCheck())
+            if (CastCheck() && targetHero.statmnt != Hero.Statements.invulnerability && targetHero.statmnt != Hero.Statements.died)
             {
                 if (targetHero.CurHlth + SpellCastingHero.CurMn / 2 > targetHero.MaxHealth)
                 {
@@ -43,6 +43,10 @@ namespace GameByCash
                 return true;
             }
             return false;
+        }
+        public override string ToString()
+        {
+            return "AddHealth";
         }
     }
 }

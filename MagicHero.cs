@@ -6,6 +6,8 @@ namespace GameByCash
 {
     class MagicHero : Hero
     {
+        MagicInventory magicInventory;
+        
         //мана
         public uint MaxMana { get; set; } = 150;
         private uint CurrentMana;
@@ -25,6 +27,7 @@ namespace GameByCash
         public MagicHero(string n, Races r, Gender g, int age) : base(n, r, g, age)
         {
             CurrentMana = 100;
+            magicInventory = new MagicInventory();
         }
         //заклинания ManaNeed это количество маны необходимое для каста с силой х1,
         //а StrenthK коэфициент силы (количество маны на все заклинание ManaNeed * StrenthK)

@@ -13,13 +13,19 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero)
         {
-            if (this.CastCheck() && (targetHero.statmnt == Hero.Statements.poisoned))
+            if (CastCheck() && (targetHero.statmnt == Hero.Statements.poisoned))
             {
                 targetHero.statmnt = Hero.Statements.normal;
                 SpellCastingHero.CurMn -= MinMana;
                 return true;
+        
             }
             return false;
         }
+        public override string ToString()
+        {
+            return "Antidote";
+        }
     }
 }
+

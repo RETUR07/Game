@@ -15,7 +15,7 @@ namespace GameByCash
         void timerRight_Tick(object sender, EventArgs e)
         {
             seconds++;
-            if (seconds > 10)//кол-во секунд поменять
+            if (seconds >= str)//кол-во секунд поменять
             {
                 h.statmnt = st;
                 timerRight.Stop();
@@ -29,6 +29,10 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero, uint strength)
         {
+            if (strength * 50 > SpellCastingHero.CurMn)
+            {
+                return false;
+            }
             str = strength;
             h = targetHero;
             st = targetHero.statmnt;
@@ -38,7 +42,7 @@ namespace GameByCash
             if (CastCheck() && targetHero.statmnt != Hero.Statements.invulnerability) //проверка на силу
             {
                 targetHero.statmnt = Hero.Statements.invulnerability;
-                
+                SpellCastingHero.CurMn -= strength * 50;
                 timerRight.Start();
 
                 return true;
@@ -46,23 +50,10 @@ namespace GameByCash
             return false;
         }
 
-        public override bool MainCast(MagicHero targetHero, uint strength)
+       
+        public override string ToString()
         {
-            str = strength;
-            h = targetHero;
-            st = targetHero.statmnt;
-            timerRight.Elapsed += timerRight_Tick;
-            timerRight.Interval = 1000d;
-
-            if (CastCheck()) //проверка на силу
-            {
-                targetHero.statmnt = Hero.Statements.invulnerability;
-
-                timerRight.Start();
-
-                return true;
-            }
-            return false;
+            return "Armor";
         }
     }
 }

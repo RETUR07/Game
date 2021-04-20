@@ -12,7 +12,7 @@ namespace GameByCash
         {
             Volume = volume;
         }
-        public override bool MainCast(MagicHero targetHero)
+        public bool MainCast(MagicHero targetHero)
         {
             if (this.Renewable)//Если ещё не использовали артефакт
             {

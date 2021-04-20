@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameByCash
 {
-   class InventoryObject
+    class InventoryObject
     {
         public Artifact Artifact;
         public int amount;
@@ -14,10 +14,10 @@ namespace GameByCash
             amount = 1;
         }
     }
-   class Inventory
-   {
+    class Inventory
+    {
         Hashtable inventory;
-        public Inventory() 
+        public Inventory()
         {
             inventory = new Hashtable();
         }
@@ -25,15 +25,15 @@ namespace GameByCash
         public void AddArtifact(Artifact art)
         {
             InventoryObject item = new InventoryObject(art);
-            if(inventory.ContainsKey(art.ToString()))
+            if (inventory.ContainsKey(art.ToString()))
             {
                 (inventory[art.ToString()] as InventoryObject).amount++;
             }
-            else 
+            else
             {
                 inventory.Add(art.ToString(), item);
             }
-           
+
         }
         public Artifact GetArtifact(Artifact item)
         {
@@ -45,7 +45,7 @@ namespace GameByCash
             {
                 return null;
             }
-           
+
         }
         public void RemoveArtifact(Artifact art)
         {
@@ -77,47 +77,56 @@ namespace GameByCash
         }
         public void GiveArtifact(Artifact art, Hero reciever)
         {
-            if(FindItem(art))
+            if (FindItem(art))
             {
                 RemoveArtifact(art);
                 reciever.Inventory.AddArtifact((inventory[art.ToString()] as InventoryObject).Artifact);
             }
         }
-        
+
         public void UseArtifact(LifeWaterBottle item, Hero targethero)
         {
-            if(item != null){
+            if (item != null)
+            {
                 item.MainCast(targethero);
                 RemoveArtifact(item);
-            }           
+            }
         }
         public void UseArtifact(DeadWaterBottle item, MagicHero targethero)
         {
-            item.MainCast(targethero);
-            RemoveArtifact(item);
-
+            if (item != null)
+            {
+                item.MainCast(targethero);
+                RemoveArtifact(item);
+            }
         }
         public void UseArtifact(LightningStaff item, Hero targethero, uint str)
         {
             LightningStaff olditem = new LightningStaff(item.ArtifactPower);
             item.MainCast(targethero, str);
             AddArtifact(item);
-            RemoveArtifact(olditem);            
+            RemoveArtifact(olditem);
         }
         public void UseArtifact(FrogDecoction item, Hero targethero)
         {
-            item.MainCast(targethero);
-            RemoveArtifact(item);
+            if (item != null)
+            {
+                item.MainCast(targethero);
+                RemoveArtifact(item);
+            }
         }
         public void UseArtifact(PoisonousSaliva item, Hero targethero, uint str)
-        {            
+        {
             item.MainCast(targethero, str);
             RemoveArtifact(item);
         }
         public void UseArtifact(BasiliskEye item, Hero targethero)
         {
-            item.MainCast(targethero);
-            RemoveArtifact(item);
+            if (item != null)
+            {
+                item.MainCast(targethero);
+                RemoveArtifact(item);
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero)
         {
-            if (this.CastCheck() && (targetHero.statmnt == Hero.Statements.died))
+            if (CastCheck() && (targetHero.statmnt == Hero.Statements.died))
             {
                 targetHero.CurHlth = 1;               
                 targetHero.statmnt = Hero.Statements.normal;              
@@ -21,6 +21,10 @@ namespace GameByCash
                 return true;
             }
             return false;
+        }
+        public override string ToString()
+        {
+            return "Revive";
         }
     }
 }

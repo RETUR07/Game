@@ -41,21 +41,6 @@ namespace GameByCash
         {
             return false;
         }
-        public virtual bool MainCast(MagicHero targetHero, uint strength)
-        {
-            return false;
-        }
-        public virtual bool MainCast(MagicHero targetHero)
-        {
-            return false;
-        }
-        public virtual bool MainCast(uint strength)
-        {
-            return false;
-        }
-        public virtual bool MainCast()
-        {
-            return false;
-        }
+       
     }
 }
