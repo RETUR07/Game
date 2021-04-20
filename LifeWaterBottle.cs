@@ -27,7 +27,7 @@ namespace GameByCash
                 this.Renewable = false;
                 return true;
             }
-            return false;//мб как-то уничтожить объект                   
+            return false;              
         }
         public override string ToString()
         {

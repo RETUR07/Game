@@ -37,7 +37,15 @@ namespace GameByCash
         }
         public Artifact GetArtifact(Artifact item)
         {
-            return (Artifact)(inventory[item.ToString()] as InventoryObject).Artifact;
+            if (inventory.ContainsKey(item.ToString()))
+            {
+                return (Artifact)(inventory[item.ToString()] as InventoryObject).Artifact;
+            }
+            else
+            {
+                return null;
+            }
+           
         }
         public void RemoveArtifact(Artifact art)
         {
@@ -78,27 +86,38 @@ namespace GameByCash
         
         public void UseArtifact(LifeWaterBottle item, Hero targethero)
         {
-            item.MainCast(targethero);
+            if(item != null){
+                item.MainCast(targethero);
+                RemoveArtifact(item);
+            }           
         }
         public void UseArtifact(DeadWaterBottle item, MagicHero targethero)
         {
             item.MainCast(targethero);
+            RemoveArtifact(item);
+
         }
         public void UseArtifact(LightningStaff item, Hero targethero, uint str)
         {
+            LightningStaff olditem = new LightningStaff(item.ArtifactPower);
             item.MainCast(targethero, str);
+            AddArtifact(item);
+            RemoveArtifact(olditem);            
         }
         public void UseArtifact(FrogDecoction item, Hero targethero)
         {
             item.MainCast(targethero);
+            RemoveArtifact(item);
         }
         public void UseArtifact(PoisonousSaliva item, Hero targethero, uint str)
-        {
+        {            
             item.MainCast(targethero, str);
+            RemoveArtifact(item);
         }
         public void UseArtifact(BasiliskEye item, Hero targethero)
         {
             item.MainCast(targethero);
+            RemoveArtifact(item);
         }
     }
 }
