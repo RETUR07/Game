@@ -8,16 +8,16 @@ namespace GameByCash
     {
         public LightningStaff(uint artifactPower) : base(artifactPower, true)
         {
-           
+            HaveStrength = true;
         }
         public override bool MainCast(Hero targetHero, uint strength)
         {
-            if(this.ArtifactPower != 0
-            && this.ArtifactPower - strength >= 0//Может ли персонаж умереть от посоха?
-            && targetHero.CurHlth - strength > 0)//если нет тогда нужна эта проверка иначе переделать чуть
+            if(ArtifactPower != 0
+            && ArtifactPower - strength >= 0//Может ли персонаж умереть от посоха?
+            && (int)targetHero.CurHlth - (int)strength > 0)//если нет тогда нужна эта проверка иначе переделать чуть
             {
                 targetHero.CurHlth -= strength;
-                this.ArtifactPower -= strength;
+                ArtifactPower -= strength;
                 return true;
             }
             return false;           

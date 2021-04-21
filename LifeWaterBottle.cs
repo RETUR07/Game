@@ -29,6 +29,7 @@ namespace GameByCash
             }
             return false;              
         }
+
         public override string ToString()
         {
             return "LifeWaterBottle " + Volume.ToString();

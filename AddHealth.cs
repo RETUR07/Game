@@ -9,7 +9,7 @@ namespace GameByCash
         public AddHealth(MagicHero spellCastingHero) 
                : base(spellCastingHero, 2, true, false)//как выбирать компоненты t или f??
         {
-            
+            HaveStrength = true;
         }
         public override bool MainCast(Hero targetHero, uint strength)
         {

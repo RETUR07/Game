@@ -6,7 +6,7 @@ namespace GameByCash
 {
     class MagicHero : Hero
     {
-        MagicInventory magicInventory;
+        public MagicInventory magicInventory;
         
         //мана
         public uint MaxMana { get; set; } = 150;
@@ -28,21 +28,6 @@ namespace GameByCash
         {
             CurrentMana = 100;
             magicInventory = new MagicInventory();
-        }
-        //заклинания ManaNeed это количество маны необходимое для каста с силой х1,
-        //а StrenthK коэфициент силы (количество маны на все заклинание ManaNeed * StrenthK)
-
-        //bool можно ли кастануть 
-        public bool CastCheck(int ManaNeed, int StrenthK)
-        {
-            if (ManaNeed * StrenthK > CurrentMana) return false;
-            return true;
-        }
-
-        //каст заклинания
-        public void MagicCast(int ManaNeed, int StrenthK)
-        {
-            if (CastCheck(ManaNeed, StrenthK)) CurrentMana = CurrentMana - Convert.ToUInt16(ManaNeed * StrenthK);
         }
     }
 }

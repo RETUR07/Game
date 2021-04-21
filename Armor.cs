@@ -25,7 +25,7 @@ namespace GameByCash
         public Armor(MagicHero spellCastingHero)
                           : base(spellCastingHero, 50, true, true)//MaxMana 150 а у нас 100 + она может меняться
         {
-
+            HaveStrength = true;
         }
         public override bool MainCast(Hero targetHero, uint strength)
         {
@@ -33,7 +33,7 @@ namespace GameByCash
             {
                 return false;
             }
-            str = strength;
+            str = strength * 5;
             h = targetHero;
             st = targetHero.statmnt;
             timerRight.Elapsed += timerRight_Tick;

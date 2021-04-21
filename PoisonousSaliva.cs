@@ -8,7 +8,7 @@ namespace GameByCash
     {
         public PoisonousSaliva(uint artifactPower) : base(artifactPower, true)
         {
-
+            HaveStrength = true;
         }
         public override bool MainCast(Hero targetHero, uint strength)
         {            

@@ -8,6 +8,7 @@ namespace GameByCash
     {
         public bool Renewable;
         public uint ArtifactPower;
+        public bool HaveStrength = false;
 
         public Artifact(uint artifactPower, bool renewable)
         {
@@ -24,6 +25,7 @@ namespace GameByCash
         {
             return false;
         }
+       
 
     }
 }

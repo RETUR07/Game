@@ -47,6 +47,18 @@ namespace GameByCash
             }
 
         }
+        public Artifact GetArtifact(string s)
+        {
+            if (inventory.ContainsKey(s))
+            {
+                return (inventory[s] as InventoryObject).Artifact;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         public void RemoveArtifact(Artifact art)
         {
             if (inventory.ContainsKey(art.ToString()))
@@ -64,6 +76,10 @@ namespace GameByCash
         public bool FindItem(Artifact art)
         {
             return inventory.ContainsKey(art.ToString());
+        }
+        public bool FindItem(string s)
+        {
+            return inventory.ContainsKey(s);
         }
         public override string ToString()
         {
@@ -83,8 +99,7 @@ namespace GameByCash
                 reciever.Inventory.AddArtifact((inventory[art.ToString()] as InventoryObject).Artifact);
             }
         }
-
-        public void UseArtifact(LifeWaterBottle item, Hero targethero)
+        public void UseArtifact(Artifact item, Hero targethero)
         {
             if (item != null)
             {
@@ -92,40 +107,18 @@ namespace GameByCash
                 RemoveArtifact(item);
             }
         }
-        public void UseArtifact(DeadWaterBottle item, MagicHero targethero)
+        public void UseArtifact(Artifact item, Hero targethero, uint str)
         {
-            if (item != null)
+            if (item is LightningStaff)
             {
-                item.MainCast(targethero);
-                RemoveArtifact(item);
+                LightningStaff olditem = new LightningStaff(item.ArtifactPower);
+                item.MainCast(targethero, str);
+                AddArtifact(item);
+                RemoveArtifact(olditem);
             }
-        }
-        public void UseArtifact(LightningStaff item, Hero targethero, uint str)
-        {
-            LightningStaff olditem = new LightningStaff(item.ArtifactPower);
-            item.MainCast(targethero, str);
-            AddArtifact(item);
-            RemoveArtifact(olditem);
-        }
-        public void UseArtifact(FrogDecoction item, Hero targethero)
-        {
-            if (item != null)
+            else
             {
-                item.MainCast(targethero);
-                RemoveArtifact(item);
-            }
-        }
-        public void UseArtifact(PoisonousSaliva item, Hero targethero, uint str)
-        {
-            item.MainCast(targethero, str);
-            RemoveArtifact(item);
-        }
-        public void UseArtifact(BasiliskEye item, Hero targethero)
-        {
-            if (item != null)
-            {
-                item.MainCast(targethero);
-                RemoveArtifact(item);
+                item.MainCast(targethero, str);
             }
         }
     }

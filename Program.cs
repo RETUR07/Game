@@ -7,9 +7,6 @@ namespace GameByCash
     {
         static object locker = new object();
         static uint counter = 0;
-        static bool flag = false;
-
-
 
         class EnemyAtack
         {
@@ -26,15 +23,13 @@ namespace GameByCash
                 {
                     lock (locker)
                     {
-                        flag = true;
                         counter++;
                         LightningStaff enemyStaff = new LightningStaff(counter);
                         enemy.Inventory.AddArtifact(enemyStaff);
                         enemy.Inventory.UseArtifact(enemy.Inventory.GetArtifact(enemyStaff), hero, counter);
-                        Draw(hero);
                     }
                     if (hero.statmnt == Hero.Statements.died) break;
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(5000);
                 }
             }
         }
@@ -116,7 +111,7 @@ namespace GameByCash
                         {
                             hero.Inventory.UseArtifact(art, enemy);
                         }
-                        flag = true;
+
                     }
                     else
                     {
@@ -132,22 +127,50 @@ namespace GameByCash
                         {
                             hero.Inventory.UseArtifact(art, hero);
                         }
-                        flag = true;
+
                     }
                     
                 }
 
-                ////поиск в магикинвентаре
-                //if (hero.magicInventory.FindSpell(s))
-                //{
-
-                //    flag = true;
-                //}
-
-                if (flag)
+                if (hero.magicInventory.FindSpell(s))
                 {
-                    Draw(hero);
+                    if (s2 == "enemy")
+                    {
+                        MagicCast spell = hero.magicInventory.GetSpell(s);
+                        if (spell.HaveStrength)
+                        {
+                            uint str;
+                            Console.WriteLine("введите силу предмета");
+                            UInt32.TryParse(Console.ReadLine(), out str);
+                            hero.magicInventory.UseSpell(spell, enemy, str);
+                        }
+                        else
+                        {
+                            hero.magicInventory.UseSpell(spell, enemy);
+                        }
+
+                    }
+                    else
+                    {
+                        Artifact art = hero.Inventory.GetArtifact(s);
+                        if (art.HaveStrength)
+                        {
+                            uint str;
+                            Console.WriteLine("введите силу предмета");
+                            UInt32.TryParse(Console.ReadLine(), out str);
+                            hero.Inventory.UseArtifact(art, hero, str);
+                        }
+                        else
+                        {
+                            hero.Inventory.UseArtifact(art, hero);
+                        }
+
+                    }
+
                 }
+
+                    Draw(hero);
+
                 if (enemy.statmnt == Hero.Statements.died)
                 {
                     Console.WriteLine("YOU WIN");
@@ -171,7 +194,6 @@ namespace GameByCash
             Console.WriteLine(hero.ToString());
             Console.WriteLine(hero.Inventory.ToString());
             Console.WriteLine(hero.magicInventory.ToString());
-            flag = false;
         }
     }
 }

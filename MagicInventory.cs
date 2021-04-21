@@ -41,7 +41,7 @@ namespace GameByCash
         {
             if (magicInventory.ContainsKey(spell.ToString()))
             {
-                return (MagicCast)(magicInventory[spell.ToString()] as MagicInventoryObject).Spell;
+                return (magicInventory[spell.ToString()] as MagicInventoryObject).Spell;
             }
             else
             {
@@ -49,10 +49,26 @@ namespace GameByCash
             }
 
         }
-        
+        public MagicCast GetSpell(string spell)
+        {
+            if (magicInventory.ContainsKey(spell))
+            {
+                return (magicInventory[spell] as MagicInventoryObject).Spell;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
         public bool FindSpell(MagicCast spell)
         {
             return magicInventory.ContainsKey(spell.ToString());
+        }
+        public bool FindSpell(string s)
+        {
+            return magicInventory.ContainsKey(s);
         }
         public override string ToString()
         {
@@ -65,53 +81,18 @@ namespace GameByCash
             return s;
         }
         
-        public void UseSpell(Heal spell, Hero targethero)
+        public void UseSpell(MagicCast spell, Hero targethero)
         {
             if (spell != null)
             {
                 spell.MainCast(targethero);         
             }
         }
-        public void UseSpell(Armor spell, Hero targethero, uint strength)
+        public void UseSpell(MagicCast spell, Hero targethero, uint strength)
         {
             if (spell != null)
             {
                 spell.MainCast(targethero, strength);
-            }
-        }
-        public void UseSpell(AddHealth spell, Hero targethero, uint strength)
-        {
-            if (spell != null)
-            {
-                spell.MainCast(targethero, strength);
-            }
-        }
-        public void UseSpell(AddHealth spell, Hero targethero)
-        {
-            if (spell != null)
-            {
-                spell.MainCast(targethero);
-            }
-        }
-        public void UseSpell(DeParalyse spell, Hero targethero)
-        {
-            if (spell != null)
-            {
-                spell.MainCast(targethero);
-            }
-        }
-        public void UseSpell(Revive spell, Hero targethero)
-        {
-            if (spell != null)
-            {
-                spell.MainCast(targethero);
-            }
-        }
-        public void UseSpell(Antidote spell, Hero targethero)
-        {
-            if (spell != null)
-            {
-                spell.MainCast(targethero);
             }
         }
     }

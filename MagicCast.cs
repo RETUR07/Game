@@ -9,6 +9,7 @@ namespace GameByCash
         public uint MinMana;// лучше private мы же его нигде не меняем + только задаем в дочернем
         public bool MoveAbility;// 
         public bool SpeakAbility;//
+        public bool HaveStrength = false;
 
         public MagicHero SpellCastingHero;// лучше private мы же его нигде не меняем
         //public Hero TargetHero; а зачем вообще нужны?
