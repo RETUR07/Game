@@ -14,7 +14,7 @@ namespace GameByCash
         {
             if(ArtifactPower != 0
             && ArtifactPower - strength >= 0//Может ли персонаж умереть от посоха?
-            && (int)targetHero.CurHlth - (int)strength > 0)//если нет тогда нужна эта проверка иначе переделать чуть
+            && (int)targetHero.CurHlth - (int)strength >= 0)//если нет тогда нужна эта проверка иначе переделать чуть
             {
                 targetHero.CurHlth -= strength;
                 ArtifactPower -= strength;

@@ -29,5 +29,9 @@ namespace GameByCash
             CurrentMana = 100;
             magicInventory = new MagicInventory();
         }
+        public override string ToString()
+        {
+            return base.ToString() + $"  МАНА:{ CurrentMana}/{MaxMana}";
+        }
     }
 }

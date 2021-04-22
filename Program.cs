@@ -24,12 +24,19 @@ namespace GameByCash
                     lock (locker)
                     {
                         counter++;
-                        LightningStaff enemyStaff = new LightningStaff(counter);
+                        LightningStaff enemyStaff = new LightningStaff(counter + 1);
                         enemy.Inventory.AddArtifact(enemyStaff);
-                        enemy.Inventory.UseArtifact(enemy.Inventory.GetArtifact(enemyStaff), hero, counter);
+                        enemy.Inventory.UseArtifact(enemy.Inventory.GetArtifact(enemyStaff), hero, counter % 20);
+                        enemy.Inventory.UseArtifact(enemy.Inventory.GetArtifact(enemyStaff), hero, 1);
                     }
-                    if (hero.statmnt == Hero.Statements.died) break;
-                    System.Threading.Thread.Sleep(5000);
+                    if (hero.statmnt == Hero.Statements.died)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n\n\n\n\n#####################################YOU" +
+                            " LOSE#####################################\n\n\n\n\n\n\n\n");
+                        break;
+                    }
+                    System.Threading.Thread.Sleep(7000);
                 }
             }
         }
@@ -66,7 +73,7 @@ namespace GameByCash
             hero.Inventory.AddArtifact(new LifeWaterBottle(LifeWaterBottle.VolumeTypes.small));
             hero.Inventory.AddArtifact(new LifeWaterBottle(LifeWaterBottle.VolumeTypes.big));
             hero.Inventory.AddArtifact(new DeadWaterBottle(DeadWaterBottle.VolumeTypes.medium));
-            hero.Inventory.AddArtifact(new LightningStaff(100));
+            hero.Inventory.AddArtifact(new LightningStaff(60));
             hero.Inventory.AddArtifact(new BasiliskEye());
             hero.Inventory.AddArtifact(new PoisonousSaliva(5));
             hero.Inventory.AddArtifact(new FrogDecoction());
@@ -77,10 +84,7 @@ namespace GameByCash
             hero.magicInventory.AddSpell(new AddHealth(hero));
             hero.magicInventory.AddSpell(new Heal(hero));
 
-            Console.Clear();
-            Console.WriteLine(hero.ToString());
-            Console.WriteLine(hero.Inventory.ToString());
-            Console.WriteLine(hero.magicInventory.ToString());
+            Draw(hero, enemy);
 
             EnemyAtack atack = new EnemyAtack(enemy, hero);
             Thread enmy = new Thread(new ThreadStart(atack.EnemyAtackThread));
@@ -92,8 +96,9 @@ namespace GameByCash
                 string s, s2;
                 Console.WriteLine("введите название заклинания или предмета");
                 s = Console.ReadLine();
-                Console.WriteLine("введите цель");
+                Console.WriteLine("введите цель(hero or enemy)");
                 s2 = Console.ReadLine();
+
                 // поиск в инвентаре
                 if (hero.Inventory.FindItem(s))
                 {
@@ -152,48 +157,52 @@ namespace GameByCash
                     }
                     else
                     {
-                        Artifact art = hero.Inventory.GetArtifact(s);
-                        if (art.HaveStrength)
+                        MagicCast spell = hero.magicInventory.GetSpell(s);
+                        if (spell.HaveStrength)
                         {
                             uint str;
                             Console.WriteLine("введите силу предмета");
                             UInt32.TryParse(Console.ReadLine(), out str);
-                            hero.Inventory.UseArtifact(art, hero, str);
+                            hero.magicInventory.UseSpell(spell, hero, str);
                         }
                         else
                         {
-                            hero.Inventory.UseArtifact(art, hero);
+                            hero.magicInventory.UseSpell(spell, hero);
                         }
 
                     }
 
                 }
 
-                    Draw(hero);
+                Draw(hero, enemy);
 
-                if (enemy.statmnt == Hero.Statements.died)
-                {
-                    Console.WriteLine("YOU WIN");
-                    break;
-                }
                 if (hero.statmnt == Hero.Statements.died)
                 {
-                    Console.WriteLine("YOU LOSE");
                     break;
                 }
+                if (enemy.statmnt == Hero.Statements.died)
+                {
+                    Console.Clear();
+                    Console.WriteLine("\n\n\n\n\n\n\n\n#####################################YOU" +
+                        " WIN#####################################\n\n\n\n\n\n\n\n");
+                    break;
+                }
+
 
             }
 
 
             enmy.Join();
         }
-        static void Draw(MagicHero hero)
+        static void Draw(MagicHero hero, MagicHero enemy)
         {
             Console.Clear();
 
             Console.WriteLine(hero.ToString());
             Console.WriteLine(hero.Inventory.ToString());
             Console.WriteLine(hero.magicInventory.ToString());
+            Console.WriteLine("############################################\n");
+            Console.WriteLine(enemy.ToString());
         }
     }
 }
