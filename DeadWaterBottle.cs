@@ -12,9 +12,9 @@ namespace GameByCash
         {
             Volume = volume;
         }
-        public bool MainCast(MagicHero targetHero)
+        public override bool MainCast(MagicHero targetHero)
         {
-            if (this.Renewable)//Если ещё не использовали артефакт
+            if (Renewable)//Если ещё не использовали артефакт
             {
                 if (targetHero.CurMn + (uint)Volume > targetHero.MaxMana)
                 {
@@ -24,10 +24,10 @@ namespace GameByCash
                 {
                     targetHero.CurMn = targetHero.CurMn + (uint)Volume;
                 }
-                this.Renewable = false;
+                Renewable = false;
                 return true;
             }
-            return false;//мб как-то уничтожить объект                   
+            return false;
         }
         public override string ToString()
         {

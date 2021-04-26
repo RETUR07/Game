@@ -25,7 +25,9 @@ namespace GameByCash
         {
             return false;
         }
-       
-
+        public virtual bool MainCast(MagicHero targetHero)
+        {
+            return MainCast(targetHero as Hero);            
+        }
     }
 }

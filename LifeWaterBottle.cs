@@ -14,7 +14,7 @@ namespace GameByCash
         }
         public override bool MainCast(Hero targetHero)
         {
-            if(this.Renewable)//Если ещё не использовали артефакт
+            if(Renewable)//Если ещё не использовали артефакт
             {
                 if (targetHero.CurHlth + (uint)Volume > targetHero.MaxHealth)
                 {
@@ -24,7 +24,7 @@ namespace GameByCash
                 {
                     targetHero.CurHlth = targetHero.CurHlth + (uint)Volume;
                 }
-                this.Renewable = false;
+                Renewable = false;
                 return true;
             }
             return false;              

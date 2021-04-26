@@ -107,6 +107,14 @@ namespace GameByCash
                 RemoveArtifact(item);
             }
         }
+        public void UseArtifact(Artifact item, MagicHero targethero)
+        {
+            if (item != null)
+            {
+                item.MainCast(targethero);
+                RemoveArtifact(item);
+            }
+        }
         public void UseArtifact(Artifact item, Hero targethero, uint str)
         {
             if (item is LightningStaff)

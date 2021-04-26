@@ -10,15 +10,15 @@ namespace GameByCash
         {
             HaveStrength = true;
         }
-        public override bool MainCast(Hero targetHero, uint strength)
+        public override bool MainCast(Hero targetHero)
         {            
-            if(targetHero.CurHlth - strength <= 0)
+            if((int)targetHero.CurHlth - (int)ArtifactPower <= 0)
             {
                 targetHero.CurHlth = 0;//Автоматически в die переводится 
             }
             else
             {
-                targetHero.CurHlth -= targetHero.CurHlth - strength;
+                targetHero.CurHlth -= ArtifactPower;
                 if (targetHero.statmnt == Hero.Statements.normal
                 || targetHero.statmnt == Hero.Statements.weak)
                 {
